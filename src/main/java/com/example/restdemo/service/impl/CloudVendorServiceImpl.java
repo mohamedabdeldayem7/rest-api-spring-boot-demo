@@ -1,6 +1,7 @@
 package com.example.restdemo.service.impl;
 
 import com.example.restdemo.dto.CloudVendorDto;
+import com.example.restdemo.exception.CloudVendorNotFoundException;
 import com.example.restdemo.mapper.CloudVendorMapper;
 import com.example.restdemo.model.CloudVendor;
 import com.example.restdemo.repository.CloudVendorRepository;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CloudVendorServiceImpl implements CloudVendorService {
@@ -35,7 +37,11 @@ public class CloudVendorServiceImpl implements CloudVendorService {
 
     @Override
     public CloudVendorDto getVendorById(String id) {
-        return cloudVendorMapper.getCloudVendorDto(cloudVendorRepository.findById(id).get());
+        Optional<CloudVendor> cloudVendor = cloudVendorRepository.findById(id);
+        if(cloudVendor.isEmpty()){
+            throw new CloudVendorNotFoundException("Requested cloud vendor does not exist");
+        }
+        return cloudVendorMapper.getCloudVendorDto(cloudVendor.get());
     }
 
     @Override
