@@ -1,0 +1,10 @@
+#server.port: 9090
+#
+#spring:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/cloud_vendor
+#    username: postgres
+#    password: 12345
+#  jpa:
+#    hibernate:
+#      ddl-auto: create
