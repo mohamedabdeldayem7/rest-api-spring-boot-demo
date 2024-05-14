@@ -1,11 +1,12 @@
 package com.example.restdemo.controller;
 
 import com.example.restdemo.dto.CloudVendorDto;
+import com.example.restdemo.response.ResponseHandler;
 import com.example.restdemo.service.CloudVendorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/cloud-vendor")
@@ -19,14 +20,15 @@ public class CloudVendorController {
     }
 
     @GetMapping
-    public List<CloudVendorDto> getAllCloudVendors() {
-        return cloudVendorService.getAllVendors();
+    public ResponseEntity<Object> getAllCloudVendors() {
+        return ResponseHandler.responseBuilder("All vendors details are given here",
+                HttpStatus.OK, cloudVendorService.getAllVendors());
     }
 
     @GetMapping("/{id}")
-    public CloudVendorDto getCloudVendorById(@PathVariable String id) {
-        return cloudVendorService.getVendorById(id);
-    }
+    public ResponseEntity<Object> getCloudVendorById(@PathVariable String id) {
+        return ResponseHandler.responseBuilder("Requested vendor details are given here",
+                HttpStatus.OK, cloudVendorService.getVendorById(id));    }
 
     @PostMapping
     public String createCloudVendor(@RequestBody CloudVendorDto cloudVendorDto) {
