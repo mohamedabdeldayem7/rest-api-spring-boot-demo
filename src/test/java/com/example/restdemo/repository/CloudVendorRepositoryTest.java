@@ -46,4 +46,10 @@ public class CloudVendorRepositoryTest {
 
     }
 
+    @Test
+    void testFindByVendorName_NotFound(){
+        List<CloudVendor> vendors = this.cloudVendorRepository.findByVendorName("Amazon");
+
+        Assertions.assertThat(vendors.isEmpty()).isTrue();
+    }
 }
