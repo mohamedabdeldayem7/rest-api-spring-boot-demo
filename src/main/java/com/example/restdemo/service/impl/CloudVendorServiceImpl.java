@@ -45,19 +45,24 @@ public class CloudVendorServiceImpl implements CloudVendorService {
     }
 
     @Override
-    public void addVendor(CloudVendorDto vendor) {
+    public String addVendor(CloudVendorDto vendor) {
         CloudVendor cloudVendor = cloudVendorMapper.getCloudVendor(vendor);
         cloudVendorRepository.save(cloudVendor);
+
+        return "add Vendor successfully";
     }
 
     @Override
-    public void updateVendor(CloudVendorDto vendor) {
+    public String updateVendor(CloudVendorDto vendor) {
         CloudVendor cloudVendor = cloudVendorMapper.getCloudVendor(vendor);
         cloudVendorRepository.save(cloudVendor);
+
+        return "update Vendor successfully";
     }
 
     @Override
-    public void deleteVendor(String id) {
+    public String deleteVendor(String id) {
         cloudVendorRepository.deleteById(id);
+        return "Delete Vendor successfully";
     }
 }

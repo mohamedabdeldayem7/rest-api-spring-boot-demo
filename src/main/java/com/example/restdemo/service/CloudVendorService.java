@@ -9,7 +9,7 @@ import java.util.List;
 public interface CloudVendorService {
     List<CloudVendorDto> getAllVendors();
     CloudVendorDto getVendorById(String id);
-    void addVendor(CloudVendorDto vendor);
-    void updateVendor(CloudVendorDto vendor);
-    void deleteVendor(String id);
+    String addVendor(CloudVendorDto vendor);
+    String updateVendor(CloudVendorDto vendor);
+    String deleteVendor(String id);
 }
