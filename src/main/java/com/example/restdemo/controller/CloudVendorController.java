@@ -28,11 +28,13 @@ public class CloudVendorController {
     @GetMapping("/{id}")
     public ResponseEntity<Object> getCloudVendorById(@PathVariable String id) {
         return ResponseHandler.responseBuilder("Requested vendor details are given here",
-                HttpStatus.OK, cloudVendorService.getVendorById(id));    }
+                HttpStatus.OK, cloudVendorService.getVendorById(id));
+    }
 
     @PostMapping
     public String createCloudVendor(@RequestBody CloudVendorDto cloudVendorDto) {
-        return cloudVendorService.addVendor(cloudVendorDto);
+        cloudVendorService.addVendor(cloudVendorDto);
+        return "add Vendor successfully";
     }
 
     @PutMapping
